@@ -7,33 +7,61 @@ class Graph:
 
     """Represent a graph as a dictionary of vertices mapping labels to edges."""
     def __init__(self):
-        self.vertices = {}
+        self.vertices = {} # This is our adjacency list
 
     def add_vertex(self, vertex_id):
         """
         Add a vertex to the graph.
         """
-        pass  # TODO
+        self.vertices[vertex_id] = set()
 
     def add_edge(self, v1, v2):
         """
-        Add a directed edge to the graph.
+        Add a directed edge to the graph from v1 to v2
         """
-        pass  # TODO
+        # Check if they exist
+        if v1 in self.vertices and v2 in self.vertices:
+            # Add the edge
+            self.vertices[v1].add(v2)
+        else:
+            print(f'ERROR ADDING EDGE: Vertex not found')
 
     def get_neighbors(self, vertex_id):
         """
         Get all neighbors (edges) of a vertex.
         """
-        pass  # TODO
+        if vertex_id in self.vertices:
+            return self.vertices[vertex_id]
+        else:
+            return None
+            # Might want to raise an exception here instead
 
     def bft(self, starting_vertex):
         """
         Print each vertex in breadth-first order
         beginning from starting_vertex.
         """
-        pass  # TODO
-
+        # Create a queue and enqueue starting vertex
+        qq = Queue()
+        qq.enqueue([starting_vertex])
+        # Create a set of traversed vertices
+        visited = set()
+        # While queue is not empty:
+        while qq.size() > 0:
+            # dequeue/pop the first vertex
+            path = qq.dequeue()
+            # if not visited
+            if path[-1] not in visited:
+                # DO THE THING!
+                print(path[-1])
+                # mark as visited
+                visited.add(path[-1])
+                # enqueue all neighbors
+                for next_vert in self.get_neighbors(path[-1]):
+                    new_path = list(path)
+                    new_path.append(next_vert)
+                    qq.enqueue(new_path)
+        
     def dft(self, starting_vertex):
         """
         Print each vertex in depth-first order
