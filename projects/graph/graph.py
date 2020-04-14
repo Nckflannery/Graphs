@@ -100,13 +100,16 @@ class Graph:
                     # Get neighbors of node and add them to the stack to iterate through next
                     ss.push(next_node)
 
-    def dft_recursive(self, vertex, visited=set()):
+    def dft_recursive(self, vertex, visited=None):
         """
         Print each vertex in depth-first order
         beginning from starting_vertex.
 
         This should be done using recursion.
         """
+        # Initial run
+        if visited is None:
+            visited = set()
         # Can't think of how to do this without setting visited as a parameter
         # If vertex not visited yet, add to set and print
         if vertex not in visited:
@@ -169,7 +172,7 @@ class Graph:
                         new_path.append(neighbor)
                         ss.push(new_path)
 
-    def dfs_recursive(self, vertex, destination_vertex, visited=set(), path=[]):
+    def dfs_recursive(self, vertex, destination_vertex, visited=None, path=None):
         """
         Return a list containing a path from
         starting_vertex to destination_vertex in
@@ -177,6 +180,11 @@ class Graph:
 
         This should be done using recursion.
         """
+        # Initial run
+        if visited is None:
+            visited = set()
+        if path is None:
+            path = []
         # Rename starting_vertex because of recursion later
         # Again I can't see how to do this without declaring visited and path as parameters
         # Check if vertex in visited
