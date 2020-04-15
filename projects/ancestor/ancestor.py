@@ -14,6 +14,7 @@ def earliest_ancestor(ancestors, starting_node):
         graph.add_vertex(parent)
         graph.add_vertex(child)
         # Add directions
+    for parent, child in ancestors:
         # Since we want to traverse *up* the list we will point the child -> parent -> grandparent
         graph.add_edge(child, parent)
 
@@ -24,13 +25,11 @@ def earliest_ancestor(ancestors, starting_node):
     # # Return negative 1 if no parent nodes exist
     # earliest_ancestor = -1
 
-    print(graph.get_neighbors(3))
     if len(graph.get_neighbors(starting_node)) == 0:
         return -1
          
     else:
         while qq.size() > 0:
-            print('hi')
             path = qq.dequeue()
             vertex = path[-1]
 
@@ -39,7 +38,7 @@ def earliest_ancestor(ancestors, starting_node):
             #     earliest_ancestor = vertex
 
             parents = graph.get_neighbors(vertex)
-            for parent in sorted(parents):
+            for parent in sorted(parents, reverse=True):
                 copy_path = list(path)
                 copy_path.append(parent)
                 qq.enqueue(copy_path)
