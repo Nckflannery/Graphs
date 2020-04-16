@@ -24,7 +24,7 @@ class Graph:
             # Add the edge
             self.vertices[v1].add(v2)
         else:
-            raise ValueError('Vertex does not exist')
+            print(f'ERROR ADDING EDGE: Vertex not found')
 
     def get_neighbors(self, vertex_id):
         """
