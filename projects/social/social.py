@@ -125,18 +125,18 @@ class SocialGraph:
                 copy_path.append(i)
                 if i not in visited:
                     qq.enqueue(copy_path)
-                elif len(copy_path) < len(visited[i]):
-                    visited[i] = copy_path
+                # elif len(copy_path) < len(visited[i]):
+                #     visited[i] = copy_path
         return visited
 
 
 
 if __name__ == '__main__':
     sg = SocialGraph()
-    sg.populate_graph(1000, 5)
-    # print(sg.friendships)
+    sg.populate_graph(10, 3)
+    print(sg.friendships)
     connections = sg.get_all_social_paths(1)
-    # print(connections)
+    print(connections)
 
 total_social_paths = 0
 for user_id in connections:
